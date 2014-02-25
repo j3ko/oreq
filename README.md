@@ -80,14 +80,14 @@ console.log(url);
 
 | Function | Description |
 | -------- | ----------- |
-| withExpand(value) | OData `$expand`.  `value` is comma seperated string or array. |
-| withFormat(value) | OData `$format`.  `value` is a string.  One of `"atom"`, `"json"` or `"xml"`. |
-| withOrderby(value) | OData `$orderby`.  `value` is a comma seperated string or array. |
-| withTop(value) | OData `$top`.  `value` is a string or number. |
-| withSkip(value) | OData `$skip`.  `value` is a string or number. |
-| withSelect(value) | OData `$select`.  `value` is comma seperated string or array. |
-| withInlinecount() | OData `$inlinecount`.  Adds `inlinecount=allpages` to the request.|
-| withFilter(value) | OData `$filter`.  `value` is a filter created from `oreq.filter()`. |
+| `withExpand(value)` | OData `$expand`.  `value` is comma seperated string or array. |
+| `withFormat(value)` | OData `$format`.  `value` is a string.  One of `"atom"`, `"json"` or `"xml"`. |
+| `withOrderby(value)` | OData `$orderby`.  `value` is a comma seperated string or array. |
+| `withTop(value)` | OData `$top`.  `value` is a string or number. |
+| `withSkip(value)` | OData `$skip`.  `value` is a string or number. |
+| `withSelect(value)` | OData `$select`.  `value` is comma seperated string or array. |
+| `withInlinecount()` | OData `$inlinecount`.  Adds `inlinecount=allpages` to the request.|
+| `withFilter(value)` | OData `$filter`.  `value` is a filter created from `oreq.filter()`. |
 
 ## License
 oreq.js is freely distributable under the terms of the MIT license.
