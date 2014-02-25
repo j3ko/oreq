@@ -77,23 +77,23 @@ describe('oreq', function() {
 			});
 		});
 		
-		describe('when withTop is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
+		describe('when withTop is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
 			beforeEach(function() {
-				request.withTop('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+				request.withTop('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
 			
-			it('should return "$top=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
-				expect(request.url()).toEqual('$top=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+			it('should return "$top=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
+				expect(request.url()).toEqual('$top=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
 		});
 		
-		describe('when withTop is "#%&*{}\:<>?/+ "', function() {
+		describe('when withTop is "#%&*{}\:<>? "', function() {
 			beforeEach(function() {
-				request.withTop('#%&*{}\:<>?/+ ');
+				request.withTop('#%&*{}\:<>? ');
 			});
 			
-			it('should return "$top=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20"', function() {
-				expect(request.url()).toEqual('$top=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20');
+			it('should return "$top=%23%25%26*%7B%7D%3A%3C%3E%3F%20"', function() {
+				expect(request.url()).toEqual('$top=%23%25%26*%7B%7D%3A%3C%3E%3F%20');
 			});
 		});
 	}); // top
@@ -135,23 +135,23 @@ describe('oreq', function() {
 			});
 		});
 		
-		describe('when withSkip is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
+		describe('when withSkip is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
 			beforeEach(function() {
-				request.withSkip('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+				request.withSkip('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
 			
-			it('should return "$skip=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
-				expect(request.url()).toEqual('$skip=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+			it('should return "$skip=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
+				expect(request.url()).toEqual('$skip=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
 		});
 		
-		describe('when withSkip is "#%&*{}\:<>?/+ "', function() {
+		describe('when withSkip is "#%&*{}\:<>? "', function() {
 			beforeEach(function() {
-				request.withSkip('#%&*{}\:<>?/+ ');
+				request.withSkip('#%&*{}\:<>? ');
 			});
 			
-			it('should return "$skip=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20"', function() {
-				expect(request.url()).toEqual('$skip=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20');
+			it('should return "$skip=%23%25%26*%7B%7D%3A%3C%3E%3F%20"', function() {
+				expect(request.url()).toEqual('$skip=%23%25%26*%7B%7D%3A%3C%3E%3F%20');
 			});
 		});
 	}); // skip
@@ -193,23 +193,23 @@ describe('oreq', function() {
 			});
 		});
 		
-		describe('when withFormat is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
+		describe('when withFormat is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
 			beforeEach(function() {
-				request.withFormat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+				request.withFormat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
 			
-			it('should return "$format=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
-				expect(request.url()).toEqual('$format=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+			it('should return "$format=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
+				expect(request.url()).toEqual('$format=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
 		});
 		
-		describe('when withFormat is "#%&*{}\:<>?/+ "', function() {
+		describe('when withFormat is "#%&*{}\:<>? "', function() {
 			beforeEach(function() {
-				request.withFormat('#%&*{}\:<>?/+ ');
+				request.withFormat('#%&*{}\:<>? ');
 			});
 			
-			it('should return "$format=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20"', function() {
-				expect(request.url()).toEqual('$format=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20');
+			it('should return "$format=%23%25%26*%7B%7D%3A%3C%3E%3F%20"', function() {
+				expect(request.url()).toEqual('$format=%23%25%26*%7B%7D%3A%3C%3E%3F%20');
 			});
 		});
 		
@@ -252,23 +252,23 @@ describe('oreq', function() {
 			});
 		});
 		
-		describe('when withExpand is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
+		describe('when withExpand is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
 			beforeEach(function() {
-				request.withExpand('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+				request.withExpand('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
 			
-			it('should return "$expand=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
-				expect(request.url()).toEqual('$expand=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+			it('should return "$expand=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
+				expect(request.url()).toEqual('$expand=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
 		});
 		
-		describe('when withExpand is "#%&*{}\:<>?/+ "', function() {
+		describe('when withExpand is "#%&*{}\:<>? "', function() {
 			beforeEach(function() {
-				request.withExpand('#%&*{}\:<>?/+ ');
+				request.withExpand('#%&*{}\:<>? ');
 			});
 			
-			it('should return "$expand=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20"', function() {
-				expect(request.url()).toEqual('$expand=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20');
+			it('should return "$expand=%23%25%26*%7B%7D%3A%3C%3E%3F%20"', function() {
+				expect(request.url()).toEqual('$expand=%23%25%26*%7B%7D%3A%3C%3E%3F%20');
 			});
 		});
 
@@ -331,23 +331,23 @@ describe('oreq', function() {
 			});
 		});
 		
-		describe('when withSelect is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
+		describe('when withSelect is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
 			beforeEach(function() {
-				request.withSelect('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+				request.withSelect('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
 			
-			it('should return "$select=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
-				expect(request.url()).toEqual('$select=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+			it('should return "$select=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
+				expect(request.url()).toEqual('$select=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
 		});
 		
-		describe('when withSelect is "#%&*{}\:<>?/+ "', function() {
+		describe('when withSelect is "#%&*{}\:<>? "', function() {
 			beforeEach(function() {
-				request.withSelect('#%&*{}\:<>?/+ ');
+				request.withSelect('#%&*{}\:<>? ');
 			});
 			
-			it('should return "$select=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20"', function() {
-				expect(request.url()).toEqual('$select=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20');
+			it('should return "$select=%23%25%26*%7B%7D%3A%3C%3E%3F%20"', function() {
+				expect(request.url()).toEqual('$select=%23%25%26*%7B%7D%3A%3C%3E%3F%20');
 			});
 		});
 
@@ -432,23 +432,23 @@ describe('oreq', function() {
 				});
 			});
 			
-			describe('when withFilter is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
+			describe('when withFilter is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
 				beforeEach(function() {
-					request.withFilter('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+					request.withFilter('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 				});
 				
-				it('should return "$filter=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"', function() {
-					expect(request.url()).toEqual('$filter=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~');
+				it('should return "$filter=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
+					expect(request.url()).toEqual('$filter=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 				});
 			});
 			
-			describe('when withFilter is "#%&*{}\:<>?/+ "', function() {
+			describe('when withFilter is "#%&*{}\:<>? "', function() {
 				beforeEach(function() {
-					request.withFilter('#%&*{}\:<>?/+ ');
+					request.withFilter('#%&*{}\:<>? ');
 				});
 				
-				it('should return "$filter=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20"', function() {
-					expect(request.url()).toEqual('$filter=%23%25%26*%7B%7D%3A%3C%3E%3F%2F%2B%20');
+				it('should return "$filter=%23%25%26*%7B%7D%3A%3C%3E%3F%20"', function() {
+					expect(request.url()).toEqual('$filter=%23%25%26*%7B%7D%3A%3C%3E%3F%20');
 				});
 			});
 		}); // filter string
@@ -469,7 +469,7 @@ describe('oreq', function() {
 			});
 
 			describe('when withFilter is complex and encoded', function() {
-				it('should return "$filter=Genres%2Fany(x%3A%20x%20eq%202%20or%20x%20eq%206)%20or%20Released%2Fany(x%3A%20x%20eq%201990%20or%20x%20eq%201999)%20or%20substringof(%22Be%20Cool%22%2CTitleName)"', function() {
+				it('should return "$filter=Genres/any%28x%3A%20x%20eq%202%20or%20x%20eq%206%29%20or%20Released/any%28x%3A%20x%20eq%201990%20or%20x%20eq%201999%29%20or%20substringof%28%22Be%20Cool%22%2CTitleName%29"', function() {
 					var url = request
 							.withFilter(oreq
 								.filter('Genres')
@@ -482,7 +482,7 @@ describe('oreq', function() {
 								.substringOf('TitleName'))
 							.url();
 					
-					expect(url).toEqual('$filter=Genres%2Fany(x%3A%20x%20eq%202%20or%20x%20eq%206)%20or%20Released%2Fany(x%3A%20x%20eq%201990%20or%20x%20eq%201999)%20or%20substringof(%22Be%20Cool%22%2CTitleName)');
+					expect(url).toEqual('$filter=Genres/any%28x%3A%20x%20eq%202%20or%20x%20eq%206%29%20or%20Released/any%28x%3A%20x%20eq%201990%20or%20x%20eq%201999%29%20or%20substringof%28%22Be%20Cool%22%2CTitleName%29');
 				});
 			});
 			
@@ -549,4 +549,44 @@ describe('oreq', function() {
 			});
 		});
 	}); // filterMixin
+	
+	describe('Verify Documentation', function() {
+	
+		describe('when paging', function() {
+			it('should return "http://services.odata.org/Northwind/Northwind.svc/Customers?$top=10&$skip=10"', function() {
+		
+				var url = oreq.request('http://services.odata.org/Northwind/Northwind.svc/Customers').withSkip(10).withTop(10).url();
+				
+				expect(url).toEqual('http://services.odata.org/Northwind/Northwind.svc/Customers?$top=10&$skip=10');
+			});
+		});
+		
+		describe('when sorting', function() {
+			it('should return "http://services.odata.org/Northwind/Northwind.svc/Customers?$orderby=Country%2CCity"', function() {
+		
+				var url = oreq.request('http://services.odata.org/Northwind/Northwind.svc/Customers').withOrderby(['Country','City']).url()
+				
+				expect(url).toEqual('http://services.odata.org/Northwind/Northwind.svc/Customers?$orderby=Country%2CCity');
+			});
+		});
+		
+		describe('when projecting', function() {
+			it('should return "http://services.odata.org/Northwind/Northwind.svc/Customers?$select=CustomerID%2CCompanyName%2CCity"', function() {
+		
+				var url = oreq.request('http://services.odata.org/Northwind/Northwind.svc/Customers').withSelect(['CustomerID','CompanyName','City']).url();
+				
+				expect(url).toEqual('http://services.odata.org/Northwind/Northwind.svc/Customers?$select=CustomerID%2CCompanyName%2CCity');
+			});
+		});
+		
+		describe('when filtering', function() {
+			it('should return "http://services.odata.org/Northwind/Northwind.svc/Orders?$filter=endswith%28ShipPostalCode%2C%27100%27%29"', function() {
+		
+				var filter = oreq.filter('ShipPostalCode').endsWith("'100'");
+				var url = oreq.request('http://services.odata.org/Northwind/Northwind.svc/Orders').withFilter(filter).url();
+				
+				expect(url).toEqual('http://services.odata.org/Northwind/Northwind.svc/Orders?$filter=endswith%28ShipPostalCode%2C%27100%27%29');
+			});
+		});
+	});
 });
