@@ -162,7 +162,7 @@
 		var result = req.root;
 		var params = [];
 		
-		var fn = !decoded ? encodeURIComponent : function(val) { return val; };
+		var fn = !decoded ? escape : function(val) { return val; };
 		
 		if (!_isUndefined(req.expand))
 			params.push('$expand=' + fn(req.expand));
