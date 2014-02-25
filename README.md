@@ -9,27 +9,24 @@ Generate OData requests fluently in Javascript
 ```javascript
 var url = oreq.request("http://services.odata.org/Northwind/Northwind.svc/Customers").withSkip(10).withTop(10).url();
 
-console.log(url);
+console.log(url); // output: http://services.odata.org/Northwind/Northwind.svc/Customers?$top=10&$skip=10
 ```
-output: <http://services.odata.org/Northwind/Northwind.svc/Customers?$top=10&$skip=10>
 
 **Sorting**:
 
 ```javascript
 var url = oreq.request("http://services.odata.org/Northwind/Northwind.svc/Customers").withOrderby(["Country","City"]).url();
 
-console.log(url);
+console.log(url); // output: http://services.odata.org/Northwind/Northwind.svc/Customers?$orderby=Country%2CCity
 ```
-output: <http://services.odata.org/Northwind/Northwind.svc/Customers?$orderby=Country%2CCity>
 
 **Projecting**:
 
 ```javascript
 var url = oreq.request("http://services.odata.org/Northwind/Northwind.svc/Customers").withOrderby(["CustomerID","CompanyName","City"]).url();
 
-console.log(url);
+console.log(url); // output: http://services.odata.org/Northwind/Northwind.svc/Customers?$select=CustomerID%2CCompanyName%2CCity
 ```
-output: <http://services.odata.org/Northwind/Northwind.svc/Customers?$select=CustomerID%2CCompanyName%2CCity>
 
 **Filtering**:
 
@@ -37,9 +34,8 @@ output: <http://services.odata.org/Northwind/Northwind.svc/Customers?$select=Cus
 var filter = oreq.filter("ShipPostalCode").endsWith("'100'");
 var url = oreq.request("http://services.odata.org/Northwind/Northwind.svc/Orders").withFilter(filter).url();
 
-console.log(url);
+console.log(url); // output: http://services.odata.org/Northwind/Northwind.svc/Orders?$filter=endswith%28ShipPostalCode%2C%27100%27%29
 ```
-output: <http://services.odata.org/Northwind/Northwind.svc/Orders?$filter=endswith%28ShipPostalCode%2C%27100%27%29>
 
 ## Getting Started
 
