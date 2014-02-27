@@ -96,16 +96,20 @@ console.log(url);
 
 ### filter Functions:
 
-There are 3 types of filter expression types:  Primitive, Common and Boolean.
+There are 3 types of filter expression types:  [Primitive](#primitive-expression), Common and Boolean.
 
-<!--##### Primitive Expression
+##### Primitive Expression
 
 | Function | Description |
 | -------- | ----------- |
-| `withExpand(value)` | OData `$expand`.  `value` is comma seperated string or array. |
-| `withFormat(value)` | OData `$format`.  `value` is a string.  One of `"atom"`, `"json"` or `"xml"`. |
-| `withOrderby(value)` | OData `$orderby`.  `value` is a comma seperated string or array. |
--->
+| `year()` | Evaluate the `year()` of the Date type entity property.  Example: `oreq.filter("UpdatedDate").year();`. |
+| `month()` | Evaluate the `month()` of the Date type entity property.  Example: `oreq.filter("UpdatedDate").month();`. |
+| `day()` | Evaluate the `day()` of the Date type entity property.  Example: `oreq.filter("UpdatedDate").day(;`. |
+| `hour()` | Evaluate the `hour()` of the Date type entity property.  Example: `oreq.filter("UpdatedDate").hour();`. |
+| `minute()` | Evaluate the `minute()` of the Date type entity property.  Example: `oreq.filter("UpdatedDate").minute();`. |
+| `second()` | Evaluate the `second()` of the Date type entity property.  Example: `oreq.filter("UpdatedDate").second();`. |
+| `any([lambda])` | Evaluate `any()` of the given lambda filter. <br /> Example: `oreq.filter("Country").any(oreq.filter().eq("Canada"));`. |
+| `all([lambda])` | Evaluate `all()` of the given lambda filter. <br /> Example: `oreq.filter("Country").all(oreq.filter().eq("Canada"));`. |
 
 ## License
 oreq.js is freely distributable under the terms of the MIT license.
