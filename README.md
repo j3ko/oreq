@@ -69,6 +69,7 @@ Usage:
 var url = oreq.request("http://localhost:3000/Products").withSkip(1).withTop(10).url();
 
 console.log(url);
+// output: http://localhost:3000/Products?$top=10&$skip=1
 ```
 
 ## Documentation
