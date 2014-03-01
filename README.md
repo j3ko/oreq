@@ -104,7 +104,7 @@ There are 3 types of filter expression types:  [Primitive](#primitive-expression
 | -------- | ----------- |
 | `year()` | Evaluate the `year()` of the Date type entity property. <br /> Example: `oreq.filter("UpdatedDate").year();`. |
 | `month()` | Evaluate the `month()` of the Date type entity property.  <br /> Example: `oreq.filter("UpdatedDate").month();`. |
-| `day()` | Evaluate the `day()` of the Date type entity property. <br /> Example: `oreq.filter("UpdatedDate").day(;`. |
+| `day()` | Evaluate the `day()` of the Date type entity property. <br /> Example: `oreq.filter("UpdatedDate").day();`. |
 | `hour()` | Evaluate the `hour()` of the Date type entity property. <br /> Example: `oreq.filter("UpdatedDate").hour();`. |
 | `minute()` | Evaluate the `minute()` of the Date type entity property.  <br /> Example: `oreq.filter("UpdatedDate").minute();`. |
 | `second()` | Evaluate the `second()` of the Date type entity property. <br /> Example: `oreq.filter("UpdatedDate").second();`. |
