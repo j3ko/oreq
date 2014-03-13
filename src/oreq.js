@@ -646,9 +646,14 @@
 		eqOr: function(arr) {
 			var f = oreq;
 			
-			for (var i=0; i<arr.length; i++) {
-				f = f.filter(this.value).eq(arr[i]);
-				if (arr.length != (i+1)) f.or();
+			if (_isArray(arr)) {
+				for (var i=0; i<arr.length; i++) {
+					f = f.filter(this.value).eq(arr[i]);
+					if (arr.length != (i+1)) f.or();
+				}
+			}
+			else if (arr) {
+				f = f.filter(this.value).eq(arr);
 			}
 			
 			return f;
@@ -656,9 +661,14 @@
 		yearEqOr: function(arr) {
 			var f = oreq;
 			
-			for (var i=0; i<arr.length; i++) {
-				f = f.filter(this.value).year().eq(arr[i]);
-				if (arr.length != (i+1)) f.or();
+			if (_isArray(arr)) {
+				for (var i=0; i<arr.length; i++) {
+					f = f.filter(this.value).year().eq(arr[i]);
+					if (arr.length != (i+1)) f.or();
+				}
+			}
+			else if (arr) {
+				f = f.filter(this.value).year().eq(arr);
 			}
 			
 			return f;
@@ -666,9 +676,14 @@
 		anyOr: function(arr, lambda) {
 			var f = oreq;
 			
-			for (var i=0; i<arr.length; i++) {
-				f = f.filter(lambda).eq(arr[i]);
-				if (arr.length != (i+1)) f.or();
+			if (_isArray(arr)) {
+				for (var i=0; i<arr.length; i++) {
+					f = f.filter(lambda).eq(arr[i]);
+					if (arr.length != (i+1)) f.or();
+				}
+			}
+			else if (arr) {
+				f = f.filter(lambda).eq(arr);
 			}
 			
 			return this.any(f);
@@ -676,9 +691,14 @@
 		anyYearOr: function(arr, lambda) {
 			var f = oreq;
 			
-			for (var i=0; i<arr.length; i++) {
-				f = f.filter(lambda).year().eq(arr[i]);
-				if (arr.length != (i+1)) f.or();
+			if (_isArray(arr)) {
+				for (var i=0; i<arr.length; i++) {
+					f = f.filter(lambda).year().eq(arr[i]);
+					if (arr.length != (i+1)) f.or();
+				}
+			}
+			else if (arr) {
+				f = f.filter(lambda).year().eq(arr);
 			}
 			
 			return this.any(f);
