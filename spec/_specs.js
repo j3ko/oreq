@@ -588,5 +588,14 @@ describe('oreq', function() {
 				expect(url).toEqual('http://services.odata.org/Northwind/Northwind.svc/Orders?$filter=endswith%28ShipPostalCode%2C%27100%27%29');
 			});
 		});
+		
+		describe('when browser getting started', function() {
+			it('should return "http://localhost:3000/Products?$top=10&$skip=1"', function() {
+		
+				var url = oreq.request("http://localhost:3000/Products").withSkip(1).withTop(10).url();
+				
+				expect(url).toEqual('http://localhost:3000/Products?$top=10&$skip=1');
+			});
+		});
 	});
 });
