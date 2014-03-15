@@ -64,14 +64,7 @@
 
 		for (var k = 0; k < infix.length;  k++) {
 
-			// current char
 			var c = infix[k];
-
-			/*******************************/
-			// console.log('stack: ' + stack.join(', '));			
-			// console.log('output: ' + output.join(' '));
-			// console.log('/*******************************/');
-			/*******************************/
 
 			if (c == '(') {
 				stack.push(c);
@@ -83,7 +76,6 @@
 				stack.pop(); // pop '('
 			}
 
-			// else work with the stack
 			else {
 				while (stack.length) {
 					var peekedChar = stack.peek();
@@ -100,7 +92,7 @@
 				stack.push(c);
 			}
 
-		} // end for loop
+		}
 
 		while (stack.length)
 		output.push(stack.pop());
@@ -113,16 +105,10 @@
 			return;
 			
 		var result = postfix.join(' ');
-		console.log(result);
 		
 		var stack = [];
 	
 		while(postfix.length) {
-			/*******************************/
-			// console.log('postfix: ' + postfix.join(', '));
-			// console.log('stack: ' + stack.join(', '));			
-			// console.log('/*******************************/');
-			/*******************************/
 			var cur = postfix.shift();
 			if (cur instanceof UnaryOperator) {
 				var una = stack.pop();
@@ -332,108 +318,88 @@
 		if (paren % 2 !== 0)	this.addInternal(')');
 		
 		var instring = this.infix.join(' ');
-		console.log(instring);
 		var post = _infixToPostfix(this.infix);
 		var poststring = _evalPostfix(post);
-		console.log(poststring);
 		return poststring;
 	};
 
-	// commonExpression = [WSP] (boolCommonExpression / methodCallExpression /
-							// parenExpression / literalExpression / addExpression /
-							// subExpression / mulExpression / divExpression /
-							// modExpression / negateExpression / memberExpression
-							// / firstMemberExpression / castExpression / functionCallExpression ) [WSP]
 	var CommonExpression = function(infix) { 
 		Expression.call(this, infix);
 	};
 	extendObj(CommonExpression, Expression);
 	
-	// eqExpression = commonExpression WSP "eq" WSP commonExpression
 	CommonExpression.prototype.eq = function(value) {
 		this.addOperator('eq');
 		this.addOperand(value);
 		return new BoolCommonExpression(this.infix);
 	};
-	// neExpression = commonExpression WSP "ne" WSP commonExpression
+
 	CommonExpression.prototype.ne = function(value) {
 		this.addOperator('ne');
 		this.addOperand(value);
 		return new BoolCommonExpression(this.infix);
 	};
-	// gtExpression = commonExpression WSP "gt" WSP commonExpression
+
 	CommonExpression.prototype.gt = function(value) {
 		this.addOperator('gt');
 		this.addOperand(value);
 		return new BoolCommonExpression(this.infix);
 	};
-	// geExpression = commonExpression WSP "ge" WSP commonExpression
+
 	CommonExpression.prototype.ge = function(value) {
 		this.addOperator('ge');
 		this.addOperand(value);
 		return new BoolCommonExpression(this.infix);
 	};
-	// ltExpression = commonExpression WSP "lt" WSP commonExpression
+
 	CommonExpression.prototype.lt = function(value) {
 		this.addOperator('lt');
 		this.addOperand(value);
 		return new BoolCommonExpression(this.infix);
 	};
-	// leExpression = commonExpression WSP "le" WSP commonExpression
+
 	CommonExpression.prototype.le = function(value) {
 		this.addOperator('le');
 		this.addOperand(value);
 		return new BoolCommonExpression(this.infix);
 	};
-	// // notExpression = "not" WSP commonExpression
+
 	CommonExpression.prototype.not = function(value) {
 		this.addOperator('not');
 		this.addOperand(value);
 		return new BoolCommonExpression(this.infix);
 	};
-	// // addExpression = commonExpression WSP "add" WSP commonExpression
+
 	CommonExpression.prototype.add = function(value) {
 		this.addOperator('add');
 		this.addOperand(value);
 		return new CommonExpression(this.infix);
 	};
-	// // subExpression = commonExpression WSP "sub" WSP commonExpression
+
 	CommonExpression.prototype.sub = function(value) {
 		this.addOperator('sub');
 		this.addOperand(value);
 		return new CommonExpression(this.infix);
 	};
-	// // mulExpression = commonExpression WSP "mul" WSP commonExpression
+
 	CommonExpression.prototype.mul = function(value) {
 		this.addOperator('mul');
 		this.addOperand(value);
 		return new CommonExpression(this.infix);
 	};
-	// // divExpression = commonExpression WSP "div" WSP commonExpression
+
 	CommonExpression.prototype.div = function(value) {
 		this.addOperator('div');
 		this.addOperand(value);
 		return new CommonExpression(this.infix);
 	};
-	// // modExpression = commonExpression WSP "mod" WSP commonExpression
+
 	CommonExpression.prototype.mod = function(value) {
 		this.addOperator('mod');
 		this.addOperand(value);
 		return new CommonExpression(this.infix);
 	};
-	// boolCommonExpression = [WSP] (boolLiteralExpression / andExpression /
-							// orExpression /
-							// boolPrimitiveMemberExpression / eqExpression / neExpression /
-							// ltExpression / leExpression / gtExpression /
-							// geExpression / notExpression / isofExpression/
-							// boolCastExpression / boolMethodCallExpression /
-							// firstBoolPrimitiveMemberExpression / boolParenExpression /
-							// boolFunctionCallExpression) [WSP]
-							// parenExpression = "(" [WSP] commonExpression [WSP] ")"
-							// boolParenExpression = "(" [WSP] boolCommonExpression [WSP] ")"
-							// negateExpression = "-" [WSP] commonExpression
-							// isofExpression = "isof" [WSP] "("[[WSP] commonExpression [WSP] ","][WSP]
-							// stringUriLiteral [WSP] ")"
+
 	var BoolCommonExpression = function(infix) { 
 		Expression.call(this, infix);	
 	};
@@ -442,97 +408,20 @@
 	BoolCommonExpression.prototype.filter = function(value, type) {
 		return new PrimitiveExpression(this.infix, value, type);
 	};
-	// andExpression = boolCommonExpression WSP "and" WSP boolCommonExpression
+
 	BoolCommonExpression.prototype.and = function(value) {
 		this.addInternal(')');
 		this.addOperator('and');
 		return new BoolCommonExpression(this.infix);
 	};
-	// orExpression = boolCommonExpression WSP "or" WSP boolCommonExpression
+
 	BoolCommonExpression.prototype.or = function(value) {
 		this.addInternal(')');
 		this.addOperator('or');
 		return new BoolCommonExpression(this.infix);
 	};
 	
-	
-	// castExpression = "cast" [WSP] "("[[WSP] commonExpression [WSP] ","][WSP]
-						// stringUriLiteral [WSP] ")"
-	// boolCastExpression = "cast" [WSP]
-						// "("[[WSP] commonExpression [WSP] ","][WSP]
-						// "Edm.Boolean" [WSP] ")"
-	// firstMemberExpression = [WSP] [namespaceQualifiedEnitityType "/"]
-						// [lambdaPredicatePrefixExpression]
-						// ; A lambdaPredicatePrefixExpression is only defined inside a
-						// ; lambdaPredicateExpression. A lambdaPredicateExpression is required
-						// ; inside a lambdaPredicateExpression.
-						// entityNavProperty /
-						// ; section 2.2.3.1
-						// entityComplexProperty /
-						// ; section 2.2.3.1
-						// entitySimpleProperty /
-						// ; section 2.2.3.1
-						// entityCollectionProperty
-						// ; section 2.2.3.1
-	// firstBoolPrimitiveMemberExpression = [namespaceQualifiedEntityType "/"]entityProperty
-						// ; section 2.2.3.1
-	// memberExpression = commonExpression [WSP] "/" [WSP] [namespaceQualifiedEntityType "/"]
-						// entityNavProperty / ; section 2.2.3.1
-						// entityComplexProperty / ; section 2.2.3.1
-						// entitySimpleProperty / ; section 2.2.3.1
-						// entityCollectionProperty ; section 2.2.3.1
-	// boolPrimitiveMemberExpression = commonExpression [WSP] "/" [WSP]
-						// [namespaceQualifiedEntityType "/"]entityProperty
-						// ; section 2.2.3.1
-	// literalExpression = stringUriLiteral ; section 2.2.2
-						// / dateTimeUriLiteral ; section 2.2.2
-						// / dateTimeOffsetUriLiteral ; section 2.2.2
-						// / timeUriLiteral ; section 2.2.2
-						// / decimalLiteral ; section 2.2.2
-						// / guidUriLiteral ; section 2.2.2
-						// / singleLiteral ; section 2.2.2
-						// / doubleLiteral ; section 2.2.2
-						// / int16Literal ; section 2.2.2
-						// / int32Literal ; section 2.2.2
-						// / int64Literal ; section 2.2.2
-						// / binaryLiteral ; section 2.2.2
-						// / nullLiteral ; section 2.2.2
-						// / byteLiteral ; section 2.2.2
-						// / fullPointLiteral ; section 2.2.2
-						// / fullLineStringLiteral ; section 2.2.2
-						// / fullPolygonLiteral ; section 2.2.2
-						// / fullGeoCollectionLiteral ; section 2.2.2
-						// / fullMultiPointLiteral ; section 2.2.2
-						// / fullMultiLineStringLiteral ; section 2.2.2
-						// / fullMultiGeographyLiteral ; section 2.2.2
-	// boolLiteralExpression = boolLiteral ; section 2.2.2
-	// methodCallExpression = boolMethodExpression
-						// / indexOfMethodCallExpression
-						// / replaceMethodCallExpression
-						// / toLowerMethodCallExpression
-						// / toUpperMethodCallExpression
-						// / trimMethodCallExpression
-						// / substringMethodCallExpression
-						// / concatMethodCallExpression
-						// / lengthMethodCallExpression
-						// / yearMethodCallExpression
-						// / monthMethodCallExpression
-						// / dayMethodCallExpression
-						// / hourMethodCallExpression
-						// / minuteMethodCallExpression
-						// / secondMethodCallExpression
-						// / roundMethodCallExpression
-						// / floorMethodCallExpression
-						// / ceilingMethodCallExpression
-						// / distanceMethodCallExpression
-						// / geoLengthMethodCallExpression
-	// boolMethodExpression = endsWithMethodCallExpression
-						// / startsWithMethodCallExpression
-						// / substringOfMethodCallExpression
-						// / intersectsMethodCallExpression
-						// / anyMethodCallExpression
-						// / allMethodCallExpression
-	// convert value to string
+
 	function PrimitiveExpression(infix, value, type) {
 		this.value = value;
 		Expression.call(this, infix);
@@ -541,11 +430,6 @@
 	}
 	extendObj(PrimitiveExpression, CommonExpression);
 
-	// anyMethodCallExpression = pathExpression-collection "/"
-		// "any"
-		// "("
-		// [ lambdaVariableExpression ":" lambdaPredicateExpression ]
-		// ")"
 	PrimitiveExpression.prototype.any = function(lambda) {
 		// check if path expression?
 		this.addOperator('any');
@@ -553,11 +437,7 @@
 		this.addInternal(')');
 		return new BoolCommonExpression(this.infix);
 	};
-	// allMethodCallExpression = pathExpression-collection "/"
-		// "all"
-		// "("
-		// lambdaVariableExpression ":" lambdaPredicateExpression
-		// ")"
+
 	PrimitiveExpression.prototype.all = function(lambda) {
 		// check if path expression?
 		this.addOperator('all');
@@ -565,72 +445,58 @@
 		this.addInternal(')');
 		return new BoolCommonExpression(this.infix);
 	};
-	// yearMethodCallExpression = "year" [WSP]
-					// "(" [WSP] commonexpression [WSP] ")"
+
 	PrimitiveExpression.prototype.year = function() {
 		this.addUnaryOperator('year');
 		return new CommonExpression(this.infix);
 	};
-	// monthMethodCallExpression = "month" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
+
 	PrimitiveExpression.prototype.month = function() {
 		this.addUnaryOperator('month');
 		return new CommonExpression(this.infix);
 	};
-	// dayMethodCallExpression = "day" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
+
 	PrimitiveExpression.prototype.day = function() {
 		this.addUnaryOperator('day');
 		return new CommonExpression(this.infix);
 	};
-	// hourMethodCallExpression = "hour" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
+
 	PrimitiveExpression.prototype.hour = function() {
 		this.addUnaryOperator('hour');
 		return new CommonExpression(this.infix);
 	};
-	// minuteMethodCallExpression = "minute" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
+
 	PrimitiveExpression.prototype.minute = function() {
 		this.addUnaryOperator('minute');
 		return new CommonExpression(this.infix);
 	};
-	// secondMethodCallExpression = "second" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
+
 	PrimitiveExpression.prototype.second = function() {
 		this.addUnaryOperator('second');
 		return new CommonExpression(this.infix);
 	};
-	// substringOfMethodCallExpression = "substringof" [WSP]
-					// "(" [WSP] commonexpression [WSP]
-					// [ "," [WSP] commonexpression [WSP] ] ")"
+
 	PrimitiveExpression.prototype.substringOf = function(value) {
 		this.addOperator('substringof');
 		this.addOperand(value);
 		this.addInternal(')');
 		return new BoolCommonExpression(this.infix);
 	};
-	// endsWithMethodCallExpression = "endswith" [WSP]
-					// "(" [WSP] commonexpression [WSP]
-					// "," [WSP] commonexpression [WSP] ")"
+
 	PrimitiveExpression.prototype.endsWith = function(value) {
 		this.addOperator('endswith');
 		this.addOperand(value);
 		this.addInternal(')');
 		return new BoolCommonExpression(this.infix);
 	};
-	// startsWithMethodCallExpression = "startswith" [WSP]
-						// "(" [WSP] commonexpression [WSP]
-						// "," [WSP] commonexpression [WSP] ")"
+
 	PrimitiveExpression.prototype.startsWith = function(value) {
 		this.addOperator('startswith');
 		this.addOperand(value);
 		this.addInternal(')');
 		return new BoolCommonExpression(this.infix);
 	};
-	// indexOfMethodCallExpression = "indexof" [WSP]
-						// "(" [WSP] commonexpression [WSP]
-						// "," [WSP] commonexpression [WSP] ")"
+
 	PrimitiveExpression.prototype.indexOf = function(value) {
 		this.addOperator('indexof');
 		this.addOperand(value);
@@ -707,86 +573,3 @@
 
 	
 })(typeof exports === 'undefined' ? this.oreq = {} : exports);
-
-
-	// replaceMethodCallExpression = "replace" [WSP]
-						// "(" [WSP] commonexpression [WSP]
-						// "," [WSP] commonexpression [WSP]
-						// "," [WSP] commonexpression [WSP] ")"
-	// toLowerMethodCallExpression = "tolower" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
-	// toUpperMethodCallExpression = "toupper" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
-	// trimMethodCallExpression = "trim" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
-	// substringMethodCallExpression = "substring" [WSP]
-						// "(" [WSP] commonexpression [WSP]
-						// "," [WSP] commonexpression [WSP]
-						// [ "," [WSP] commonexpression [WSP] ] ")"
-	// concatMethodCallExpression = "concat" [WSP]
-						// "(" [WSP] commonexpression [WSP]
-						// [ "," [WSP] commonexpression [WSP] ] ")"
-	// lengthMethodCallExpression = "length" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
-	// getTotalOffsetMinutesMethodCallExpression = "gettotaloffsetminutes" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
-	// roundMethodCallExpression = "round" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"						
-	// floorMethodCallExpression = "floor" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
-	// ceilingMethodCallExpression = "ceiling" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
-	// distanceMethodCallExpression = "geo.distance" [WSP]
-						// "(" [WSP] commonexpression [WSP]
-						// "," [WSP] commonexpression [WSP] ")"
-	// geoLengthMethodCallExpression = "geo.length" [WSP]
-						// "(" [WSP] commonexpression [WSP] ")"
-	// intersectsMethodCallExpression = "geo.intersects" [WSP]
-						// "(" [WSP] commonexpression [WSP]
-						// "," [WSP] commonexpression [WSP] ")"
-	// implicitVariableExpression = "$it"	
-						// ; references the unnamed outer variable of the query
-	// lambdaVariableExpression = *pchar
-						// ; section 3.3 of [RFC3986]
-						// ; a identifier/name that complies with EDM identifier rules
-	// lambdaPredicatePrefixExpression = inscopeVariableExpression "/"
-	// lambdaPredicateExpression = boolCommonExpression
-						// ; this is a boolCommonExpression with the added restriction that any
-						// ; firstMemberExpression expressions that are inside the methodPredicateExpression
-						// ; MUST have a prefix of lambdaPredicatePrefixExpression.
-	// inscopeVariableExpression = implicitVariableExpression | lambdaVariableExpression
-						// ; the lambdaVariableExpression must be the name of a variable introduced by either the
-						// ; current lambdaMethodCallExpression’s lambdaVariableExpression or via a wrapping
-						// ; lambdaMethodCallExpression’s lambdaVariableExpression.
-	// lambdaMethodCallExpression = anyMethodCallExpression | allMethodCallExpression.
-	// singlePathExpression = [WSP]
-						// "("singlePathExpression / inscopeVariableExpression
-						// "/" entityNavProperty-et | entityComplexProperty
-	// collectionPathExpression = [WSP] commonexpression [WSP]
-						// singlePathExpression / inscopeVariableExpression
-						// "/"
-						// (entityNavProperty-es | entityCollectionProperty)
-	// functionCallExpression = [ ( memberExpression / firstMemberExpression ) "/"]
-						// functionFQName ; section 2.2.3.1
-						// "(" [functionParametersExpression] ")"
-	// boolFunctionCallExpression = functionCallExpression
-						// ; with the added restriction that the specified FunctionImport
-						// ; has a ReturnType of Edm.Boolean
-	// functionParametersExpression =
-						// functionParameterExpression *( "," functionParameterExpression)
-	// functionParameterExpression = [WSP]
-						// functionParameterName ; section 2.2.3.1
-						// [WSP] "="
-						// [WSP]
-						// literalExpression / structuralValue / entityReference
-						// [WSP]
-	// structuralValue = ; a JSON or Verbose JSON encoding of a complex type, multi-value,
-						// ; entity, or collection of entities
-	// entityReference = "KEY("
-						// [ entityContainer "." ]
-						// entitySet
-						// "("keyPredicate")"
-						// ")"
-						// ["/" namespaceQualifiedEntityType ]
-						// ; refers a single Entity by key, and optionally allows a cast to a
-						// ; derived type.
