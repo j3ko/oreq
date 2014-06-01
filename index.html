@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="oreq : Fluent OData API for Javascript" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>oreq</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/j3ko/oreq">View on GitHub</a>
+
+          <h1 id="project_title">oreq</h1>
+          <h2 id="project_tagline">Fluent OData API for Javascript</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/j3ko/oreq/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/j3ko/oreq/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="oreq" class="anchor" href="#oreq"><span class="octicon octicon-link"></span></a>oreq</h1>
+
+<p>Generate OData requests fluently in Javascript</p>
+
+<h2>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<p><strong>Paging</strong>:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">oreq</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="s2">"http://services.odata.org/Northwind/Northwind.svc/Customers"</span><span class="p">).</span><span class="nx">withSkip</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">withTop</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">url</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span> 
+<span class="c1">// output: http://services.odata.org/Northwind/Northwind.svc/Customers?$top=10&amp;$skip=10</span>
+</pre></div>
+
+<p><strong>Sorting</strong>:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">oreq</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="s2">"http://services.odata.org/Northwind/Northwind.svc/Customers"</span><span class="p">).</span><span class="nx">withOrderby</span><span class="p">([</span><span class="s2">"Country"</span><span class="p">,</span><span class="s2">"City"</span><span class="p">]).</span><span class="nx">url</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span> 
+<span class="c1">// output: http://services.odata.org/Northwind/Northwind.svc/Customers?$orderby=Country%2CCity</span>
+</pre></div>
+
+<p><strong>Projecting</strong>:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">oreq</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="s2">"http://services.odata.org/Northwind/Northwind.svc/Customers"</span><span class="p">).</span><span class="nx">withOrderby</span><span class="p">([</span><span class="s2">"CustomerID"</span><span class="p">,</span><span class="s2">"CompanyName"</span><span class="p">,</span><span class="s2">"City"</span><span class="p">]).</span><span class="nx">url</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span> 
+<span class="c1">// output: http://services.odata.org/Northwind/Northwind.svc/Customers?$select=CustomerID%2CCompanyName%2CCity</span>
+</pre></div>
+
+<p><strong>Filtering</strong>:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">filter</span> <span class="o">=</span> <span class="nx">oreq</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="s2">"ShipPostalCode"</span><span class="p">).</span><span class="nx">endsWith</span><span class="p">(</span><span class="s2">"'100'"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">oreq</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="s2">"http://services.odata.org/Northwind/Northwind.svc/Orders"</span><span class="p">).</span><span class="nx">withFilter</span><span class="p">(</span><span class="nx">filter</span><span class="p">).</span><span class="nx">url</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span> 
+<span class="c1">// output: http://services.odata.org/Northwind/Northwind.svc/Orders?$filter=endswith%28ShipPostalCode%2C%27100%27%29</span>
+</pre></div>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+
+
+<p><strong>Browser</strong>:</p>
+
+<p>Include oreq.js:</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://rawgithub.com/j3ko/oreq/master/src/oreq.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<p>Usage:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">oreq</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="s2">"http://localhost:3000/Products"</span><span class="p">).</span><span class="nx">withSkip</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">withTop</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">url</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+<span class="c1">// output: http://localhost:3000/Products?$top=10&amp;$skip=1</span>
+</pre></div>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<h3>
+<a name="oreq-functions" class="anchor" href="#oreq-functions"><span class="octicon octicon-link"></span></a>oreq Functions:</h3>
+
+<table>
+<thead><tr>
+<th>Function</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>request(root)</code></td>
+<td>Begin an OData <a href="#request-functions">request</a>.  <code>root</code> is the string root of the query eg. <code>"http://localhost:3000/Products"</code>.  When <code>root</code> is <code>undefined</code>, the given request will return just the parmeter portion of the query when <code>url()</code> is called: eg. <code>?$skip=1&amp;top=10</code>.</td>
+</tr>
+<tr>
+<td><code>filter(field)</code></td>
+<td>Begin an OData <a href="#filter-functions">filter</a>.  <code>field</code> is a string representing the property in the given OData entity to be filtered on.</td>
+</tr>
+</tbody>
+</table><h3>
+<a name="request-functions" class="anchor" href="#request-functions"><span class="octicon octicon-link"></span></a>request Functions:</h3>
+
+<table>
+<thead><tr>
+<th>Function</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>withExpand(value)</code></td>
+<td>OData <code>$expand</code>.  <code>value</code> is comma seperated string or array.</td>
+</tr>
+<tr>
+<td><code>withFormat(value)</code></td>
+<td>OData <code>$format</code>.  <code>value</code> is a string.  One of <code>"atom"</code>, <code>"json"</code> or <code>"xml"</code>.</td>
+</tr>
+<tr>
+<td><code>withOrderby(value)</code></td>
+<td>OData <code>$orderby</code>.  <code>value</code> is a comma seperated string or array.</td>
+</tr>
+<tr>
+<td><code>withTop(value)</code></td>
+<td>OData <code>$top</code>.  <code>value</code> is a string or number.</td>
+</tr>
+<tr>
+<td><code>withSkip(value)</code></td>
+<td>OData <code>$skip</code>.  <code>value</code> is a string or number.</td>
+</tr>
+<tr>
+<td><code>withSelect(value)</code></td>
+<td>OData <code>$select</code>.  <code>value</code> is comma seperated string or array.</td>
+</tr>
+<tr>
+<td><code>withInlinecount()</code></td>
+<td>OData <code>$inlinecount</code>.  Adds <code>inlinecount=allpages</code> to the request.</td>
+</tr>
+<tr>
+<td><code>withFilter(value)</code></td>
+<td>OData <code>$filter</code>.  <code>value</code> is a filter created from <code>oreq.filter()</code>.</td>
+</tr>
+</tbody>
+</table><h3>
+<a name="filter-functions" class="anchor" href="#filter-functions"><span class="octicon octicon-link"></span></a>filter Functions:</h3>
+
+<p>There are 3 types of filter expression types:  <a href="#primitive-expression">Primitive</a>, Common and Boolean.</p>
+
+<h5>
+<a name="primitive-expression" class="anchor" href="#primitive-expression"><span class="octicon octicon-link"></span></a>Primitive Expression</h5>
+
+<table>
+<thead><tr>
+<th>Function</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>year()</code></td>
+<td>Evaluate the <code>year()</code> of the Date type entity property. <br> Example: <code>oreq.filter("UpdatedDate").year();</code>.</td>
+</tr>
+<tr>
+<td><code>month()</code></td>
+<td>Evaluate the <code>month()</code> of the Date type entity property.  <br> Example: <code>oreq.filter("UpdatedDate").month();</code>.</td>
+</tr>
+<tr>
+<td><code>day()</code></td>
+<td>Evaluate the <code>day()</code> of the Date type entity property. <br> Example: <code>oreq.filter("UpdatedDate").day();</code>.</td>
+</tr>
+<tr>
+<td><code>hour()</code></td>
+<td>Evaluate the <code>hour()</code> of the Date type entity property. <br> Example: <code>oreq.filter("UpdatedDate").hour();</code>.</td>
+</tr>
+<tr>
+<td><code>minute()</code></td>
+<td>Evaluate the <code>minute()</code> of the Date type entity property.  <br> Example: <code>oreq.filter("UpdatedDate").minute();</code>.</td>
+</tr>
+<tr>
+<td><code>second()</code></td>
+<td>Evaluate the <code>second()</code> of the Date type entity property. <br> Example: <code>oreq.filter("UpdatedDate").second();</code>.</td>
+</tr>
+<tr>
+<td><code>any([lambda])</code></td>
+<td>Evaluate <code>any()</code> of the given lambda filter. <br> Example: <code>oreq.filter("Country").any(oreq.filter().eq("Canada"));</code>.</td>
+</tr>
+<tr>
+<td><code>all([lambda])</code></td>
+<td>Evaluate <code>all()</code> of the given lambda filter. <br> Example: <code>oreq.filter("Country").all(oreq.filter().eq("Canada"));</code>.</td>
+</tr>
+</tbody>
+</table><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>oreq.js is freely distributable under the terms of the MIT license.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">oreq maintained by <a href="https://github.com/j3ko">j3ko</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
