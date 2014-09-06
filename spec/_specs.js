@@ -10,7 +10,11 @@ describe('oreq', function() {
 			it('should return an empty string', function() {
 				expect(request.url()).toEqual('');
 			});
-			
+
+            it('should return an undefined root param', function() {
+                expect(request.param().root).toBeUndefined();
+            });
+
 			describe('when withTop is 1', function() {
 				it('should only return "$top=1"', function() {
 					request.withTop(1);
@@ -30,7 +34,11 @@ describe('oreq', function() {
 			it('should return "http://localhost:3000"', function() {
 				expect(request.url()).toEqual('http://localhost:3000');
 			});
-			
+
+            it('should have root param "http://localhost:3000"', function() {
+                expect(request.param().root).toEqual('http://localhost:3000');
+            });
+
 			describe('when withTop is 1', function() {
 				it('should return the "http://localhost:3000?$top=1"', function() {
 					request.withTop(1);
@@ -55,6 +63,10 @@ describe('oreq', function() {
 			it('should return ""', function() {
 				expect(request.url()).toEqual('');
 			});
+
+            it('should have undefined $top param', function() {
+                expect(request.param().$top).toBeUndefined();
+            });
 		});
 		
 		describe('when withTop is null', function() {
@@ -65,7 +77,11 @@ describe('oreq', function() {
 			it('should return "null"', function() {
 				expect(request.url()).toEqual('$top=null');
 			});
-		});
+
+            it('should have null $top param', function() {
+                expect(request.param().$top).toEqual('null');
+            });
+        });
 		
 		describe('when withTop is 0', function() {
 			beforeEach(function() {
@@ -75,6 +91,10 @@ describe('oreq', function() {
 			it('should return "$top=0"', function() {
 				expect(request.url()).toEqual('$top=0');
 			});
+
+            it('should have 0 $top param', function() {
+                expect(request.param().$top).toEqual('0');
+            });
 		});
 		
 		describe('when withTop is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
@@ -85,6 +105,10 @@ describe('oreq', function() {
 			it('should return "$top=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
 				expect(request.url()).toEqual('$top=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
+
+            it('should have $top param ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._', function() {
+                expect(request.param().$top).toEqual('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
+            });
 		});
 		
 		describe('when withTop is "#%&*{}\:<>? "', function() {
@@ -95,6 +119,10 @@ describe('oreq', function() {
 			it('should return "$top=%23%25%26*%7B%7D%3A%3C%3E%3F%20"', function() {
 				expect(request.url()).toEqual('$top=%23%25%26*%7B%7D%3A%3C%3E%3F%20');
 			});
+
+            it('should have $top param %23%25%26*%7B%7D%3A%3C%3E%3F%20', function() {
+                expect(request.param().$top).toEqual('%23%25%26*%7B%7D%3A%3C%3E%3F%20');
+            });
 		});
 	}); // top
 	
@@ -113,6 +141,10 @@ describe('oreq', function() {
 			it('should return ""', function() {
 				expect(request.url()).toEqual('');
 			});
+
+            it('should have undefined $skip', function() {
+                expect(request.param().$skip).toBeUndefined();
+            });
 		});
 		
 		describe('when withSkip is null', function() {
@@ -123,6 +155,10 @@ describe('oreq', function() {
 			it('should return "null"', function() {
 				expect(request.url()).toEqual('$skip=null');
 			});
+
+            it('should have $skip "null"', function() {
+                expect(request.param().$skip).toEqual('null');
+            });
 		});
 		
 		describe('when withSkip is 0', function() {
@@ -133,6 +169,10 @@ describe('oreq', function() {
 			it('should return "$skip=0"', function() {
 				expect(request.url()).toEqual('$skip=0');
 			});
+
+            it('should have $skip "0"', function() {
+                expect(request.param().$skip).toEqual('0');
+            });
 		});
 		
 		describe('when withSkip is "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
@@ -143,6 +183,10 @@ describe('oreq', function() {
 			it('should return "$skip=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
 				expect(request.url()).toEqual('$skip=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
 			});
+
+            it('should have $skip "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._"', function() {
+                expect(request.param().$skip).toEqual('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._');
+            });
 		});
 		
 		describe('when withSkip is "#%&*{}\:<>? "', function() {
@@ -153,6 +197,10 @@ describe('oreq', function() {
 			it('should return "$skip=%23%25%26*%7B%7D%3A%3C%3E%3F%20"', function() {
 				expect(request.url()).toEqual('$skip=%23%25%26*%7B%7D%3A%3C%3E%3F%20');
 			});
+
+            it('should have $skip "%23%25%26*%7B%7D%3A%3C%3E%3F%20"', function() {
+                expect(request.param().$skip).toEqual('%23%25%26*%7B%7D%3A%3C%3E%3F%20');
+            });
 		});
 	}); // skip
 	

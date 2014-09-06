@@ -180,7 +180,32 @@
 		}
 		return result;
 	}
-	
+
+    function _toParams(req, decoded) {
+        var params = { root: req.root };
+
+        var fn = !decoded ? escape : function(val) { return val; };
+
+        if (!_isUndefined(req.expand))
+            params.$expand = fn(req.expand);
+        if (!_isUndefined(req.format))
+            params.$format = fn(req.format);
+        if (!_isUndefined(req.filter))
+            params.$filter = fn(req.filter);
+        if (!_isUndefined(req.orderby))
+            params.$orderby = fn(req.orderby);
+        if (!_isUndefined(req.top))
+            params.$top = fn(req.top);
+        if (!_isUndefined(req.skip))
+            params.$skip = fn(req.skip);
+        if (!_isUndefined(req.select))
+            params.$select = fn(req.select);
+        if (!_isUndefined(req.inlinecount))
+            params.$inlinecount = fn(req.inlinecount);
+
+        return params;
+    }
+
 	/**
 	 *
 	 * REQUEST
@@ -248,7 +273,10 @@
 		},
 		url: function(decoded) {
 			return _toUrl(this.req, decoded);
-		}
+		},
+        param: function(decoded) {
+            return _toParams(this.req, decoded);
+        }
 	};
 
 	var Operand = function(value) {
@@ -317,7 +345,7 @@
 		}
 		if (paren % 2 !== 0)	this.addInternal(')');
 		
-		var instring = this.infix.join(' ');
+		//var instring = this.infix.join(' ');
 		var post = _infixToPostfix(this.infix);
 		var poststring = _evalPostfix(post);
 		return poststring;
